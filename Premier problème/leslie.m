@@ -5,7 +5,7 @@ function data = leslieGrowth(years, param)
     % A = [param(1:3,1)'; diag(param(4:5,1)) zeros(2, 1)]'; %On génère la matrice du modèle
     A = [param(1) param(2) param(3)
         param(4) 1-param(5) 0
-        0 param(5) param(6)]'; %On génère la matrice du modèle
+        0 param(5) param(6)]';
     n0 = [12013879 21072267 5296854]; %On met n(0) = data pour la première année
     for i = 1:length(years)
         data(i,:) = n0*A^(years(i) - years(1)); %On crée chaque ligne de la matrice data en utilisant la suite géométrique matricielle
