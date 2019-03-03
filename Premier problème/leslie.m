@@ -22,7 +22,7 @@ param = [0.5 0.5 0.5 0.5 0.5]';
 pkg load optim;
 convergence = 0;
 while (!convergence)
-[result, param, convergence] = leasqr(years, data, param, @leslieGrowth);
+    [result, param, convergence] = leasqr(years, data, param, @leslieGrowth);
 endwhile
 pkg unload optim;
 plot(years, data,'b');
