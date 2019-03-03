@@ -2,7 +2,10 @@
 
 %Fonction prenant en entrée le vecteur years et la matrice de paramètres du modèle (à partir de laquelle on génère la matrice du modèle). La fonction doit renvoyer data si param est optimisé.
 function data = leslieGrowth(years, param)
-    A = [param(1:3,1)'; diag(param(4:5,1)) zeros(2, 1)]'; %On génère la matrice du modèle
+    % A = [param(1:3,1)'; diag(param(4:5,1)) zeros(2, 1)]'; %On génère la matrice du modèle
+    A = [param(1) param(2) param(3)
+        param(4) 1-param(5) 0
+        0 param(5) param(6)]'; %On génère la matrice du modèle
     n0 = [12013879 21072267 5296854]; %On met n(0) = data pour la première année
     for i = 1:length(years)
         data(i,:) = n0*A^(years(i) - years(1)); %On crée chaque ligne de la matrice data en utilisant la suite géométrique matricielle
@@ -18,15 +21,15 @@ for i = 1:size(data)(1) %Petite astuce spécifique à Octave : on utilise size p
     data(i,1:3) = 0.01*data(i,4)* data(i,1:3); %On convertit pour chaque ligne les pourcentages en nombre de personne
 endfor
 data(:,4) = []; %On retire la dernière colonne car elle ne nous sert plus
-param = [0.5 0.5 0.5 0.5 0.5]';
+param = [0 1 0 0 2 0.1]';
 pkg load optim;
 convergence = 0;
 while (!convergence)
-    [result, param, convergence] = leasqr(years, data, param, @leslieGrowth);
+    [result, param, convergence] = leasqr(years, data, param, @leslieGrowth, eps, 100);
 endwhile
 pkg unload optim;
 plot(years, data,'b');
 hold on;
-% plot(years, result, 'r');
-plot(years(1):years(end), leslieGrowth(years(1):years(end), param), 'r');
+plot(years, result, 'r');
+% plot(years(1):years(end), leslieGrowth(years(1):years(end), param), 'r');
 axis tight;
