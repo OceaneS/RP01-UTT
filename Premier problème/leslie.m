@@ -18,17 +18,15 @@ for i = 1:size(data)(1) %Petite astuce spécifique à Octave : on utilise size p
     data(i,1:3) = 0.01*data(i,4)* data(i,1:3); %On convertit pour chaque ligne les pourcentages en nombre de personne
 endfor
 data(:,4) = []; %On retire la dernière colonne car elle ne nous sert plus
-param = [0.1 1.5 0.5 0.9 0.8]';
+param = [0.5 0.5 0.5 0.5 0.5]';
+pkg load optim;
+convergence = 0;
+while (!convergence)
+[result, param, convergence] = leasqr(years, data, param, @leslieGrowth);
+endwhile
+pkg unload optim;
 plot(years, data,'b');
-result = leslieGrowth(years(1):years(end), param);
 hold on;
 % plot(years, result, 'r');
-plot(years(1):years(end), result, 'r', 'ydatasource', 'result');
+plot(years(1):years(end), leslieGrowth(years(1):years(end), param), 'r');
 axis tight;
-while (true)
-    print("-S1280,720", "result.png")
-    param = input("Enter parameters : ");
-    param = param'
-    result = leslieGrowth(years(1):years(end), param);
-    refreshdata();
-endwhile
