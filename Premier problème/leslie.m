@@ -12,6 +12,9 @@ function data = leslieGrowth(years, param)
     endfor
 endfunction
 
+% Source : INSEE
+% https://www.insee.fr/fr/statistiques/1906664?sommaire=1906743
+
 data = [1920,31.3,54.9,13.8,2.8,38383.0; 1930,30.1,55.7,14.2,2.9,40912.1; 1946,29.5,54.5,16.0,3.4,40125.2; 1950,30.1,53.6,16.2,3.8,41647.3; 1960,32.3,51.0,16.7,4.3,45464.8; 1970,33.1,48.8,18.0,4.7,50528.2; 1980,30.6,52.4,17.0,5.7,53731.4; 1990,27.8,53.2,19.0,6.8,56577.0; 2000,25.6,53.8,20.6,7.2,58858.2; 2010,24.5,52.6,22.8,8.9,62765.2; 2011,24.5,52.2,23.3,9.0,63070.3; 2012,24.4,51.9,23.7,9.1,63376.0; 2013,24.4,51.6,24.1,9.1,63697.9]; %Données extraites du site de l'INSEE
 years = data(:,1); %On récupère les années dans la première colonne
 data(:,1) = []; %On supprime la première colonne car elle contient les années maintenant dans years
