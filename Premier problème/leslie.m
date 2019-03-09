@@ -24,11 +24,12 @@ for i = 1:size(data)(1) %Petite astuce spécifique à Octave : on utilise size p
     data(i,1:3) = 0.01*data(i,4)* data(i,1:3); %On convertit pour chaque ligne les pourcentages en nombre de personne
 endfor
 data(:,4) = []; %On retire la dernière colonne car elle ne nous sert plus
-param = [0 1 0 0 2 0.1 0.1]';
+param = [1 1 1 1 1 1 1]';
 pkg load optim;
 convergence = 0;
+options.bounds = [0 Inf; 0 Inf; 0 Inf; 0 Inf; 0 Inf; 0 Inf; 0 Inf];
 while (!convergence)
-    [result, param, convergence] = leasqr(years, data, param, @leslieGrowth, eps, 100);
+    [result, param, convergence] = leasqr(years, data, param, @leslieGrowth, eps, 100, [], [], [], options);
 endwhile
 pkg unload optim;
 plot(years, data,'b');
