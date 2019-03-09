@@ -1,7 +1,7 @@
 # RP01 - Résolution de problèmes
 Bienvenue sur ce repository GitHub ! Vous trouverez ici des algorithmes mettant en place certains modèles scientifiques afin de répondre à certaines questions.
 ## Quels sont les différents problèmes ?
-- Comment modéliser et prédire l'évolution des populations, qu'elles soient humaines, animales ou encore végétales ? (Octave/MATLAB)
+1. Comment modéliser et prédire l'évolution des populations, qu'elles soient humaines, animales ou encore végétales ? (Octave/MATLAB)
     - Modèle de Malthus
     - Modèle de Gompertz
     - Modèle de Leslie (ou encore matriciel)
