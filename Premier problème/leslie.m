@@ -27,7 +27,7 @@ data(:,4) = []; %On retire la dernière colonne car elle ne nous sert plus
 param = [1 1 1 1 1 1 1]';
 pkg load optim;
 convergence = 0;
-options.bounds = [0 Inf; 0 Inf; 0 Inf; 0 Inf; 0 Inf; 0 Inf; 0 Inf];
+options.bounds = [0 Inf; 0 Inf; 0 Inf; 0 1; 0 1; 0 1; 0 1];
 while (!convergence)
     [result, param, convergence] = leasqr(years, data, param, @leslieGrowth, eps, 100, [], [], [], options);
 endwhile
