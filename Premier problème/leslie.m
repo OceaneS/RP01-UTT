@@ -9,8 +9,8 @@ function data = leslieGrowth(years, param)
     n0 = [12013879 21072267 5296854]; %On met n(0) = data pour la première année
     for i = 1:length(years)
         data(i,:) = n0*A^(years(i) - years(1)); %On crée chaque ligne de la matrice data en utilisant la suite géométrique matricielle
-    endfor
-endfunction
+    end
+end
 
 % Source : INSEE
 % https://www.insee.fr/fr/statistiques/1906664?sommaire=1906743
@@ -22,15 +22,15 @@ data(:,4) = []; %On retire la 4eme colonne car elle contient des personnes déj�
 data(:,4) = 1000*data(:,4); %On multiplie la 4eme colonne par 1000 car elle est en milliers
 for i = 1:size(data)(1) %Petite astuce spécifique à Octave : on utilise size pour obtenir la taille (deux nombres) et on met derrière un indice pour récupérer le premier nombre
     data(i,1:3) = 0.01*data(i,4)* data(i,1:3); %On convertit pour chaque ligne les pourcentages en nombre de personne
-endfor
+end
 data(:,4) = []; %On retire la dernière colonne car elle ne nous sert plus
 param = [1 1 1 1 1 1 1]';
 pkg load optim;
 convergence = 0;
 options.bounds = [0 Inf; 0 Inf; 0 Inf; 0 1; 0 1; 0 1; 0 1];
-while (!convergence)
+while (~convergence)
     [result, param, convergence] = leasqr(years, data, param, @leslieGrowth, eps, 100, [], [], [], options);
-endwhile
+end
 pkg unload optim;
 plot(years, data,'b');
 hold on;

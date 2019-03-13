@@ -7,5 +7,5 @@ dateSampling = datenum(dateSampling, "yyyy-mm");
 figure();
 hold on;
 plot(dateSampling, data);
-datetick("mm/yyyy");
+datetick("x" ,"mm/yyyy");
 axis tight;
