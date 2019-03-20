@@ -4,11 +4,12 @@ rm(list=ls())
 
 dice.faces <- 1:6 # Les différentes issues d'un lancer (les faces des celui-ci)
 dice.fair.prob <- c(rep(1/length(dice.faces), times=length(dice.faces))) # Probabilités de tomber sur chaque face
+dice.rigged.prob <- c(1/12, 3/12, rep(1/6, times=4))
 sample.nbthrow <- 10000 # Nombre de lancer de dé
 sample.evolution.start <- 1 # A partir de combien de lancers cherche-t-on a visualiser l'évolution des proportions
 test.conf.level <- 0.95 # Niveau de confiance
 
-sample.data <- sample(dice.faces, sample.nbthrow, replace = TRUE, prob = dice.fair.prob) # On effectue les lancers
+sample.data <- sample(dice.faces, sample.nbthrow, replace = TRUE, prob = dice.rigged.prob) # On effectue les lancers
 
 sample.factors <- table(sample.data) # On calcule l'effectif pour les lancers
 sample.prop <- sample.factors/sample.nbthrow # On calcule les proportions observées
@@ -59,7 +60,7 @@ for (dice.face in dice.faces){
    test.result.bound.lower <- c()
    test.result.bound.upper <- c()
    for (index in sample.evolution.start:sample.nbthrow) {
-      test.result <- binom.test(x=sample.evolution[index, dice.face]*index ,n=index ,p=dice.fair.prob[1] ,conf.level=test.conf.level)$conf.int
+      test.result <- binom.test(x=sample.evolution[index - sample.evolution.start + 1, dice.face]*index ,n=index ,p=dice.fair.prob[dice.face] ,conf.level=test.conf.level)$conf.int
       test.result.bound.lower <- append(test.result.bound.lower, test.result[1])
       test.result.bound.upper <- append(test.result.bound.upper, test.result[2])
    }
