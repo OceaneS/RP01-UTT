@@ -1,12 +1,12 @@
 rm(list=ls())
 
-# Simulation de lancers de d�
+# Simulation de lancers de dé
 
-dice.faces <- 1:6 # Les diff�rentes issues d'un lancer (les faces des celui-ci)
-dice.fair.prob <- c(rep(1/length(dice.faces), times=length(dice.faces))) # Probabilit�s de tomber sur chaque face
+dice.faces <- 1:6 # Les différentes issues d'un lancer (les faces des celui-ci)
+dice.fair.prob <- c(rep(1/length(dice.faces), times=length(dice.faces))) # Probabilités de tomber sur chaque face
 dice.rigged.prob <- c(1/12, 3/12, rep(1/6, times=4))
-sample.nbthrow <- 100 # Nombre de lancer de d�
-sample.evolution.start <- 1 # A partir de combien de lancers cherche-t-on a visualiser l'�volution des proportions
+sample.nbthrow <- 100 # Nombre de lancer de dé
+sample.evolution.start <- 1 # A partir de combien de lancers cherche-t-on a visualiser l'évolution des proportions
 test.conf.level <- 0.95 # Niveau de confiance
 
 print("Lancé de dé")
@@ -22,16 +22,16 @@ sample.data <- sample(dice.faces, sample.nbthrow, replace = TRUE, prob = dice.ri
 # sample.diff
 
 
-# Maintenant faisons comme si nous ne savions pas ces r�sultats et consid�rons ces lancers comme successifs
+# Maintenant faisons comme si nous ne savions pas ces résultats et considérons ces lancers comme successifs
 
 print("Calcul de l'evolution des proportions")
 
-sample.evolution <- matrix(ncol=length(dice.faces)) # On cr�e une matrice de 6 colonnes contenant la proportion observ�e
+sample.evolution <- matrix(ncol=length(dice.faces)) # On crée une matrice de 6 colonnes contenant la proportion observée
 for (index in c(sample.evolution.start:sample.nbthrow)) {
    if (index == sample.evolution.start) {
       sample.evolution <- tabulate(sample.data[1:index], nbins=length(dice.faces))/index
    } else {
-      sample.evolution <- rbind(sample.evolution, tabulate(sample.data[1:index], nbins=length(dice.faces))/index) # On ajoute une ligne � la matrice donnant la proportion observ�e � cet "instant"
+      sample.evolution <- rbind(sample.evolution, tabulate(sample.data[1:index], nbins=length(dice.faces))/index) # On ajoute une ligne é la matrice donnant la proportion observée é cet "instant"
    }
 }
 
@@ -44,12 +44,12 @@ png("Result.png", width=3840, height=2160, units="px")
 par(mfrow=c(2,3))
 for (index in 1:length(dice.faces)) {
 	print(paste("Affichage du graphique pour la face", index))
-	# On affiche l'�volution pour la plage de nombre de lancers voulu en rouge
+	# On affiche l'évolution pour la plage de nombre de lancers voulu en rouge
 	par(col="red")
 	plot(sample.evolution.start:sample.nbthrow, sample.evolution[ ,index], type="l", main="Evolution des propotions", xlab="Nombre de lancers", ylab="Proportion", xlim=c(sample.evolution.start, sample.nbthrow), ylim=c(0, 0.6))
  	
 
-	# On affiche les probabilit�es en bleu
+	# On affiche les probabilitées en bleu
 	par(col="blue")
    	lines(sample.evolution.start:sample.nbthrow, rep(dice.fair.prob[index], times=length(sample.evolution.start:sample.nbthrow)))
 	
