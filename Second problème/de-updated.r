@@ -9,7 +9,7 @@ sample.nbthrow <- 100 # Nombre de lancer de dé
 sample.evolution.start <- 1 # A partir de combien de lancers cherche-t-on a visualiser l'évolution des proportions
 test.conf.level <- 0.95 # Niveau de confiance
 
-print("Lancé de dé")
+print("Lance de de")
 
 sample.data <- sample(dice.faces, sample.nbthrow, replace = TRUE, prob = dice.rigged.prob) # On effectue les lancers
 
@@ -51,8 +51,8 @@ for (index in 1:length(dice.faces)) {
 
 	# On affiche les probabilitées en bleu
 	par(col="blue")
-   	lines(sample.evolution.start:sample.nbthrow, rep(dice.fair.prob[index], times=length(sample.evolution.start:sample.nbthrow)))
-	
+	abline(h=dice.fair.prob[index])
+
 	print(paste("Calcul des intervalles de confiance pour la face", index))
 
 	# On affiche les intervalles de confiance en noir
