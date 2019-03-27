@@ -5,7 +5,7 @@ rm(list=ls())
 dice.faces <- 1:6 # Les différentes issues d'un lancer (les faces des celui-ci)
 dice.fair.prob <- c(rep(1/length(dice.faces), times=length(dice.faces))) # Probabilités de tomber sur chaque face
 dice.rigged.prob <- c(1/12, 3/12, rep(1/6, times=4))
-sample.nbthrow <- 100 # Nombre de lancer de dé
+sample.nbthrow <- 500 # Nombre de lancer de dé
 sample.evolution.start <- 1 # A partir de combien de lancers cherche-t-on a visualiser l'évolution des proportions
 test.conf.level <- 0.95 # Niveau de confiance
 
@@ -31,7 +31,7 @@ for (index in c(sample.evolution.start:sample.nbthrow)) {
    if (index == sample.evolution.start) {
       sample.evolution <- tabulate(sample.data[1:index], nbins=length(dice.faces))/index
    } else {
-      sample.evolution <- rbind(sample.evolution, tabulate(sample.data[1:index], nbins=length(dice.faces))/index) # On ajoute une ligne é la matrice donnant la proportion observée é cet "instant"
+      sample.evolution <- rbind(sample.evolution, tabulate(sample.data[1:index], nbins=length(dice.faces))/index) # On ajoute une ligne é la matrice donnant la proportion observée à cet "instant"
    }
 }
 
@@ -40,13 +40,13 @@ for (index in c(sample.evolution.start:sample.nbthrow)) {
 # sample.evolution
 
 # Affichage graphique
-png("Result.png", width=3840, height=2160, units="px")
+png("Result.png", width=1280, height=720, units="px")
 par(mfrow=c(2,3))
-for (index in 1:length(dice.faces)) {
+for (index in dice.faces) {
 	print(paste("Affichage du graphique pour la face", index))
 	# On affiche l'évolution pour la plage de nombre de lancers voulu en rouge
 	par(col="red")
-	plot(sample.evolution.start:sample.nbthrow, sample.evolution[ ,index], type="l", main="Evolution des propotions", xlab="Nombre de lancers", ylab="Proportion", xlim=c(sample.evolution.start, sample.nbthrow), ylim=c(0, 0.6))
+	plot(sample.evolution.start:sample.nbthrow, sample.evolution[ ,index], type="l", main=paste("Evolution des propotions pour la face", index), xlab="Nombre de lancers", ylab="Proportion", xlim=c(sample.evolution.start, sample.nbthrow), ylim=c(0, 1))
  	
 
 	# On affiche les probabilitées en bleu
