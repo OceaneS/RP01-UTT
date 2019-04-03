@@ -47,4 +47,6 @@ resultat <- prix + mensualite * duree + achat.variation
 plot(achat.variation, resultat, type="l", main="Influence du pourcentage de l'option d'achat", xlab="Pourcentage de l'option d'achat", ylab="Pourcentage de l'argent depense par rapport au prix de la voiture", cex.lab=1.2)
 abline(v=achat, col="red")
 abline(h=prix.final, col="red")
+abline(h=108.56, col="green")
+abline(v=108.56-prix-mensualite*duree, col="green")
 invisible(dev.off())
