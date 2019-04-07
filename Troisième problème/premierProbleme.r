@@ -1,6 +1,6 @@
 rm(list=ls()) # On retire les variables précédentes : on travaille dans un espace de travail tout propre !
 
-print("On garde la voiture ! ") # Ben quoi c'est vrai, si on peut ! Allez ! On le dit aut et fort !
+print("On garde la voiture ! ") # Ben quoi c'est vrai, si on peut ! Allez ! On le dit haut et fort !
 
 # Premier cas : mensualités constantes et emprunt classique
 print("Cas 1 :") # On annonce la couleur
