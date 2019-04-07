@@ -1,4 +1,4 @@
-rm(list=ls()) # On retire les variables précédentes : on travail dans un espace de travail tout propre !
+rm(list=ls()) # On retire les variables précédentes : on travaille dans un espace de travail tout propre !
 
 print("On garde la voiture ! ") # Ben quoi c'est vrai, si on peut ! Allez ! On le dit aut et fort !
 
@@ -48,7 +48,6 @@ duree <- 36 # La durée de l'emprunt
 # Calculons combien on paye au final
 print(paste("On paye au final", apport+duree*mensualite-100, "% du prix de la voiture.")) # *insert wow meme*
 print("Le TAEG n'a pas change !") # Et oui ! Ça ne change rien pour notre emprunt !
-
 
 rm(list=ls()) # 🧹🧹🧹 encore...
 
