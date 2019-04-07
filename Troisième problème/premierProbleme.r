@@ -57,16 +57,17 @@ print("Cas 2 :")
 apport <- 14 # Le pourcentage de l'apport
 mensualite <- rep(1.422, times=35) # Le pourcentage des différentes mensualités : les 35 premières à 1.422
 print(paste("On paye au final", apport+sum(mensualite), "% du prix de la voiture.")) # On a l'habitude maintenant
-apport <- apport+53 # Le pourcentage de l'apport + ce que l'on paye pas (ce qui n'est oas dans le crédit)
-taux <- uniroot(function(i) sum(mensualite/((1+i)^(1:length(mensualite))))-(100-apport), c(1e-18, 1), extendInt="yes")$root # Un dernier uniroot pour la root (jeu de mot/20)
+# Calculons le taux que l'on a lorsque l'on garde la voiture et utilisons  le pour calculer l'argent total que l'on emprunte
+taux <- uniroot(function(i) sum(c(mensualite, 53)/((1+i)^(1:(length(mensualite)+1))))-(100-apport), c(1e-18, 1), extendInt="yes")$root # On connait la chanson
+emprunt <- sum(mensualite/((1+taux)^(1:35))) # On calcule la vraie quantité empruntée avec la formule du cours
+taux <- uniroot(function(i) sum(mensualite/((1+i)^(1:length(mensualite))))-emprunt, c(1e-18, 1), extendInt="yes")$root # Un dernier uniroot pour la root (jeu de mot/20)
 print(paste("Le TAEG est de", ((1+taux)^12-1)*100, "%.")) # Le retour du TAEG
 
-rm(list=ls()) # 😴
+rm(apport, mensualite, taux) # 😴
 
 print("Negociation time !") # 🤓
-apport <- 14+53 # L'apport ne change pas...
 taux <- 0.005601616 # On cherche à obenir un meilleur taux que celui-là...
 # Utilisons nos capacités incroyables de résolution d'équation pour trouver les mensualités corresponantes !
-mensualite <- uniroot(function(a) sum(rep(a, times=35)/((1+taux)^(1:35)))-(100-apport), c(0, 100), extendInt="yes")$root # ♻
+mensualite <- uniroot(function(a) sum(rep(a, times=35)/((1+taux)^(1:35)))-emprunt, c(0, 100), extendInt="yes")$root # ♻
 # 👨‍💼
 print(paste("La concurrence me fait un meilleur taux que vous, c'est simple : je veux des mensualites de moins de", mensualite, "% car sinon je vais voir la concurrence.")) # 😅
