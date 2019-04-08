@@ -5,6 +5,10 @@ Bienvenue sur ce repository GitHub ! Vous trouverez ici des algorithmes mettant 
     - Modèle de Malthus
     - Modèle de Gompertz
     - Modèle de Leslie (ou encore matriciel)
+2. A partir de combien de lancers peut-on estimer qu'un dé est trucqué ?
+3. Comparaison d'offres d'achat d'une voiture
+    - quand on garde la voiture
+    - quand on rend la voiture
 ## Pourquoi utiliser GitHub ?
 GitHub permet de travailler sur le même code à plusieurs sans aucun problème et de faire des modifications non destructives du code (ce qui est bien pratique pour les fameuses bidouilles à 3h du matin qui cassent totalement le code). Il est bien plus adapté à la programmation que Google Drive ou DropBox par exemple.
 ## Comment puis-je utiliser GitHub ?
