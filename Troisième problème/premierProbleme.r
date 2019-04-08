@@ -67,6 +67,6 @@ rm(apport, mensualite, taux) # 😴
 print("Negociation time !") # 🤓
 taux <- 0.005601616 # On cherche à obenir un meilleur taux que celui-là...
 # Utilisons nos capacités incroyables de résolution d'équation pour trouver les mensualités corresponantes !
-mensualite <- uniroot(function(a) sum(rep(a, times=35)/((1+taux)^(1:35)))-emprunt, c(0, 100), extendInt="yes")$root # ♻
+mensualite <- emprunt*taux/(1-(1+taux)^(-35)) # ♻
 # 👨‍💼
 print(paste("La concurrence me fait un meilleur taux que vous, c'est simple : je veux des mensualites de moins de", mensualite, "% car sinon je vais voir la concurrence.")) # 😅
