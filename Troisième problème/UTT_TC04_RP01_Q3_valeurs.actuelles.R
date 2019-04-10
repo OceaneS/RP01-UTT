@@ -51,10 +51,7 @@ mensualite <- c(rep(0.01422, times=35),0)
 VA4 <- C0*(1-apport) - sum(mensualite/ (1+TM)^k)
 print(paste("La valeur actuelle dans le cas 2 sans achat est de",VA4*100,"%"))
 
-mensualite <- uniroot(function(m) C0*(1-apport) - sum(c(rep(m, times=35),0.53)/ (1+TM)^k) - VA3, c(0,1), extendInt="yes")$root
+mensualite <- uniroot(function(m) C0*(1-apport) - sum(c(rep(m, times=35),0)/ (1+TM)^k) - VA3, c(0,1), extendInt="yes")$root
 print(paste("La mensualité optimale pour que VA4 = VA3 est de", mensualite*100,"%"))
-
-mensualite <- uniroot(function(n) C0*(1-apport) - sum(c(rep(0.01422, times=35),n)/ (1+TM)^k) - VA3, c(0,1), extendInt="yes")$root
-print(paste("Ou alors, le pourcentage final de l'achat de la voiture pour que VA4 = VA3 doit être de ", mensualite*100,"%"))
-                 
+                  
 rm(list=ls())
