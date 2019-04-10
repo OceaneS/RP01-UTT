@@ -1,4 +1,4 @@
-#Le taux d'inflation est donné sur 3 ans car le prêt se rembourse en 3 ans. On prend ici 2016-2017-2018.
+#Le taux d'inflation est donné constant sur les 3 ans du remboursement du pret 
 #PROBLEME 1
 
 rm(list=ls())
@@ -8,7 +8,7 @@ rm(list=ls())
 apport <- 0.20
 C0 <- 1
 mensualite <-0.0246
-TI <- c(rep(0.002,times=12),rep(0.01, times=12),rep(0.018, times=12))
+TI <- 0.018
 TM <- ((1 + TI)^(1/12) - 1)
 k<-1:36
 
@@ -25,7 +25,7 @@ apport <- 0.14
 C0<-1
 mensualite <- c(rep(0.01422, times=35),0.53)
 k<-1:36
-TI <- c(rep(0.002,times=12),rep(0.01, times=12),rep(0.018, times=12))
+TI <- 0.018
 TM <- ((1 + TI)^(1/12) - 1)
 
 VA2 <- C0*(1-apport) - sum(mensualite/ (1+TM)^k)
@@ -44,7 +44,7 @@ apport <- 0.20
 C0 <- 1
 revente <-0.6
 mensualite <-c(rep(0.0246,times=35),0.0246-revente)
-TI <- c(rep(0.002,times=12),rep(0.01, times=12),rep(0.018, times=12))
+TI <- 0.018
 TM <- ((1 + TI)^(1/12) - 1)
 k<-1:36
 
@@ -62,7 +62,7 @@ apport <- 0.14
 C0<-1
 mensualite <- c(rep(0.01422, times=35),0)
 k<-1:36
-TI <- c(rep(0.002,times=12),rep(0.01, times=12),rep(0.018, times=12))
+TI <- 0.018
 TM <- ((1 + TI)^(1/12) - 1)
 
 VA4 <- C0*(1-apport) - sum(mensualite/ (1+TM)^k)
