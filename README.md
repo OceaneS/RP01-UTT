@@ -6,7 +6,7 @@ Bienvenue sur ce repository GitHub ! Vous trouverez ici des algorithmes mettant 
     - Modèle de Gompertz
     - Modèle de Leslie (ou encore matriciel)
 2. A partir de combien de lancers peut-on estimer qu'un dé est trucqué ? (R)
-3. Comparaison d'offres d'achat d'une voiture (R)
+3. Comparaison d'offres d'achat d'une voiture avec le taux d'intérêt puis la valeur actuelle (R)
     - quand on garde la voiture
     - quand on rend la voiture
 ## Pourquoi utiliser GitHub ?
