@@ -26,6 +26,9 @@ print(paste("La mensualité optimale pour que VA2 = VA1 est de", mensualite*100,
 
 mensualite <- uniroot(function(n) C0*(1-apport) - sum(c(rep(0.01422, times=35),n)/ (1+TM)^k) - VA1, c(0,1), extendInt="yes")$root
 print(paste("Ou alors, le pourcentage final de l'achat de la voiture pour que VA2 = VA1 doit être de ", mensualite*100,"%"))
+
+TM <- uniroot(function(p) C0*(1-apport) - sum(c(rep(0.01422, times=35),0.53)/ (1+p)^k) - VA1, c(0,1), extendInt="yes")$root
+print(paste("Ou alors, le taux d'inflation annuel pour que VA2 = VA1 doit être de ", ((1+TM)^12 -1)*100,"%"))
                       
 rm(list=ls())
 
@@ -53,5 +56,8 @@ print(paste("La valeur actuelle dans le cas 2 sans achat est de",VA4*100,"%"))
 
 mensualite <- uniroot(function(m) C0*(1-apport) - sum(c(rep(m, times=35),0)/ (1+TM)^k) - VA3, c(0,1), extendInt="yes")$root
 print(paste("La mensualité optimale pour que VA4 = VA3 est de", mensualite*100,"%"))
+                      
+TM <- uniroot(function(p) C0*(1-apport) - sum(c(rep(0.01422, times=35),0)/ (1+p)^k) - VA3, c(0,1), extendInt="yes")$root
+print(paste("Ou alors, le taux d'inflation annuel pour que VA3 = VA4 doit être de ", ((1+TM)^12 -1)*100,"%"))
                   
 rm(list=ls())
